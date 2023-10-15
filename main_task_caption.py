@@ -661,6 +661,7 @@ def main():
         best_output_model_file = None
         global_step = 0
         for epoch in range(args.epochs):
+            print(epoch)
             train_sampler.set_epoch(epoch)
 
             tr_loss, global_step = train_epoch(epoch, args, model, train_dataloader, tokenizer, device, n_gpu, optimizer,

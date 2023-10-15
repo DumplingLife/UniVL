@@ -23,6 +23,8 @@ from dataloaders.dataloader_msrvtt_caption import MSRVTT_Caption_DataLoader
 from util import get_logger
 torch.distributed.init_process_group(backend="nccl")
 
+from tqdm import tqdm
+
 global logger
 
 def get_args(description='UniVL on Caption Task'):
@@ -344,7 +346,7 @@ def train_epoch(epoch, args, model, train_dataloader, tokenizer, device, n_gpu, 
     start_time = time.time()
     total_loss = 0
 
-    for step, batch in enumerate(train_dataloader):
+    for step, batch in tqdm(enumerate(train_dataloader)):
         # if n_gpu == 1:
         #     # multi-gpu does scattering it-self
         #     batch = tuple(t.to(device) for t in batch)
